@@ -1,10 +1,10 @@
 {
-  "name": "php-weather/brightsky",
+  "name": "php-weather/tomorrow",
   "type": "library",
-  "description": "Brightsky provider",
+  "description": "Tomorrow.io provider",
   "homepage": "https://github.com/php-weather",
   "license": "MIT",
-  "keywords": ["weather", "bright sky"],
+  "keywords": ["weather", "tomorrow", "tomorrow.io"],
   "authors": [
     {
       "name": "Dominik Schwind",
@@ -27,12 +27,12 @@
   },
   "autoload": {
     "psr-4": {
-      "PhpWeather\\Provider\\Brightsky\\": "Src"
+      "PhpWeather\\Provider\\Tomorrow\\": "Src"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "PhpWeather\\Provider\\Brightsky\\": "Tests"
+      "PhpWeather\\Provider\\Tomorrow\\": "Tests"
     }
   },
   "scripts": {
