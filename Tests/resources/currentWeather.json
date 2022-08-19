@@ -1,0 +1,29 @@
+{
+  "data": {
+    "timelines": [
+      {
+        "timestep": "current",
+        "endTime": "2022-08-19T18:26:00Z",
+        "startTime": "2022-08-19T18:26:00Z",
+        "intervals": [
+          {
+            "startTime": "2022-08-19T18:26:00Z",
+            "values": {
+              "cloudCover": 77,
+              "dewPoint": 17.38,
+              "humidity": 82,
+              "precipitationIntensity": 0,
+              "precipitationProbability": 0,
+              "pressureSeaLevel": 1016.81,
+              "temperature": 20.5,
+              "temperatureApparent": 20.5,
+              "weatherCode": 1001,
+              "windDirection": 194.88,
+              "windSpeed": 1.38
+            }
+          }
+        ]
+      }
+    ]
+  }
+}
