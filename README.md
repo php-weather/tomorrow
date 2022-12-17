@@ -10,7 +10,7 @@
 ![GitHub](https://img.shields.io/github/license/php-weather/tomorrow)
 ![Packagist PHP Version Support](https://img.shields.io/packagist/php-v/php-weather/tomorrow)
 
-This is the [Tomorrow.io](https://brightsky.dev/) provider from PHP Weather.
+This is the [Tomorrow.io](https://www.tomorrow.io/) provider from PHP Weather.
 
 > Tomorrow.io’s weather API delivers the fast, reliable, and hyper-accurate weather data you need, with the flexibility to integrate this data source with any application, system, or program.
 
