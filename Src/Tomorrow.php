@@ -40,6 +40,46 @@ class Tomorrow extends AbstractHttpProvider
         return sprintf('https://api.tomorrow.io/v4/timelines?%s', $this->createQueryString($queryArray));
     }
 
+    /**
+     * @return string[]
+     */
+    private function getQueryFields(): array
+    {
+        return [
+            'cloudCover',
+            'dewPoint',
+            'temperatureApparent',
+            'humidity',
+            'precipitationIntensity',
+            'precipitationProbability',
+            'pressureSeaLevel',
+            'temperature',
+            'weatherCode',
+            'windSpeed',
+            'windDirection',
+        ];
+    }
+
+    /**
+     * @param  array<string, mixed>  $queryArray
+     * @return string
+     */
+    private function createQueryString(array $queryArray): string
+    {
+        $lines = [];
+        foreach ($queryArray as $key => $value) {
+            if (!is_array($value)) {
+                $lines[] = sprintf('%s=%s', $key, $value);
+            } else {
+                foreach ($value as $valueItem) {
+                    $lines[] = sprintf('%s=%s', $key, $valueItem);
+                }
+            }
+        }
+
+        return implode('&', $lines);
+    }
+
     protected function getForecastWeatherQueryString(WeatherQuery $query): string
     {
         $queryArray = [
@@ -51,6 +91,11 @@ class Tomorrow extends AbstractHttpProvider
         ];
 
         return sprintf('https://api.tomorrow.io/v4/timelines?%s', $this->createQueryString($queryArray));
+    }
+
+    protected function getHistoricalTimeLineWeatherQueryString(WeatherQuery $query): string
+    {
+        return $this->getHistoricalWeatherQueryString($query);
     }
 
     protected function getHistoricalWeatherQueryString(WeatherQuery $query): string
@@ -68,11 +113,6 @@ class Tomorrow extends AbstractHttpProvider
         }
 
         return sprintf('https://api.tomorrow.io/v4/timelines?%s', $this->createQueryString($queryArray));
-    }
-
-    protected function getHistoricalTimeLineWeatherQueryString(WeatherQuery $query): string
-    {
-        return $this->getHistoricalWeatherQueryString($query);
     }
 
     protected function mapRawData(float $latitude, float $longitude, array $rawData, ?string $type = null, ?string $units = null): Weather|WeatherCollection
@@ -115,53 +155,6 @@ class Tomorrow extends AbstractHttpProvider
         }
 
         return $weatherCollection;
-    }
-
-    public function getSources(): array
-    {
-        return [
-            new Source('tomorrow', 'tomorrow.io', 'https://www.tomorrow.io/'),
-        ];
-    }
-
-    /**
-     * @return string[]
-     */
-    private function getQueryFields(): array
-    {
-        return [
-            'cloudCover',
-            'dewPoint',
-            'temperatureApparent',
-            'humidity',
-            'precipitationIntensity',
-            'precipitationProbability',
-            'pressureSeaLevel',
-            'temperature',
-            'weatherCode',
-            'windSpeed',
-            'windDirection',
-        ];
-    }
-
-    /**
-     * @param  array<string, mixed>  $queryArray
-     * @return string
-     */
-    private function createQueryString(array $queryArray): string
-    {
-        $lines = [];
-        foreach ($queryArray as $key => $value) {
-            if (!is_array($value)) {
-                $lines[] = sprintf('%s=%s', $key, $value);
-            } else {
-                foreach ($value as $valueItem) {
-                    $lines[] = sprintf('%s=%s', $key, $valueItem);
-                }
-            }
-        }
-
-        return implode('&', $lines);
     }
 
     /**
@@ -240,6 +233,13 @@ class Tomorrow extends AbstractHttpProvider
         }
 
         return $weather;
+    }
+
+    public function getSources(): array
+    {
+        return [
+            new Source('tomorrow', 'tomorrow.io', 'https://www.tomorrow.io/'),
+        ];
     }
 
     private function mapWeatherCode(int $weatherCode): ?int
