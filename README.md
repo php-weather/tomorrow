@@ -2,9 +2,9 @@
 
 ![Packagist Version](https://img.shields.io/packagist/v/php-weather/tomorrow)  
 ![PHP Weather Common Version](https://img.shields.io/badge/phpweather--core-0.4.*-brightgreen)
-![PHP Weather HTTP Provider Version](https://img.shields.io/badge/phpweather--http--provider-0.5.*-brightgreen)  
+![PHP Weather HTTP Provider Version](https://img.shields.io/badge/phpweather--http--provider-0.6.*-brightgreen)  
 ![GitHub Release Date](https://img.shields.io/github/release-date/php-weather/tomorrow)
-![GitHub commits since tagged version](https://img.shields.io/github/commits-since/php-weather/tomorrow/0.2.1)
+![GitHub commits since tagged version](https://img.shields.io/github/commits-since/php-weather/tomorrow/0.2.2)
 ![GitHub last commit](https://img.shields.io/github/last-commit/php-weather/tomorrow)  
 ![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/php-weather/tomorrow/php.yml?branch=main)
 ![GitHub](https://img.shields.io/github/license/php-weather/tomorrow)

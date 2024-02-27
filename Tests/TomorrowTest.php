@@ -10,6 +10,7 @@ use PhpWeather\Common\WeatherQuery;
 use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\StreamInterface;
 
 class TomorrowTest extends TestCase
 {
@@ -29,7 +30,7 @@ class TomorrowTest extends TestCase
     {
         $latitude = 47.8739259;
         $longitude = 8.0043961;
-        $datetime = (new \DateTime())->setTimezone(new \DateTimeZone('UTC'))->setDate(2022, 07,31)->setTime(16,00);
+        $datetime = (new \DateTime())->setTimezone(new \DateTimeZone('UTC'))->setDate(2022, 07, 31)->setTime(16, 00);
         $testQuery = WeatherQuery::create($latitude, $longitude, $datetime);
         $testString = 'https://api.tomorrow.io/v4/timelines?location=47.8739259,8.0043961&fields=cloudCover&fields=dewPoint&fields=temperatureApparent&fields=humidity&fields=precipitationIntensity&fields=precipitationProbability&fields=pressureSeaLevel&fields=temperature&fields=weatherCode&fields=windSpeed&fields=windDirection&units=metric&timesteps=current&apikey=key';
 
@@ -37,8 +38,11 @@ class TomorrowTest extends TestCase
         $this->requestFactory->expects(self::once())->method('createRequest')->with('GET', $testString)->willReturn($request);
 
         $responseBodyString = file_get_contents(__DIR__.'/resources/currentWeather.json');
+        $body = $this->createMock(StreamInterface::class);
+        $body->method('__toString')->willReturn($responseBodyString);
+
         $response = $this->createMock(ResponseInterface::class);
-        $response->expects(self::once())->method('getBody')->willReturn($responseBodyString);
+        $response->expects(self::once())->method('getBody')->willReturn($body);
         $this->client->expects(self::once())->method('sendRequest')->with($request)->willReturn($response);
 
         $currentWeather = $this->provider->getCurrentWeather($testQuery);
